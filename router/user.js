@@ -49,7 +49,7 @@ router.post("/user/login", async (req, res) => {
       res.cookie("jwtToken", token, {
         expires: new Date(Date.now() + 2592000000),
         httpOnly: false,
-        // secure: true,
+        secure: true,
         sameSite: "None",
       });
 
