@@ -90,7 +90,7 @@ router.get("/user/check", auth, async (req, res) => {
 router.get("/user/logout", auth, async (req, res) => {
   try {
     res.clearCookie("jwtToken");
-    await req.user.save();
+    // await req.user.save();
     res.send({
       message: "loggedOut",
     });
