@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000',
+    origin: 'https://oneshot-frontend-596r.onrender.com',
     allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     optionsSuccessStatus:200
