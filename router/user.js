@@ -48,7 +48,7 @@ router.post("/user/login", async (req, res) => {
       const token = await userLogin.generateAuthToken();
       res.cookie("jwtToken", token, {
         expires: new Date(Date.now() + 2592000000),
-        httpOnly: true,
+        httpOnly: false,
         secure: true,
         sameSite: "None",
       });
@@ -90,11 +90,13 @@ router.get("/user/check", auth, async (req, res) => {
 router.get("/user/logout", auth, async (req, res) => {
   try {
     // res.clearCookie("jwtToken");
-    // await req.user.save();
-    res.cookie("jwtToken", null, {
-      expires: new Date(Date.now()),
-      httpOnly: true,
-    });
+    res.clearCookie("jwtToken", { domain: "http://localhost:3000", path: "/", secure: true, httpOnly: false });
+    await req.user.save();
+
+    // res.cookie("jwtToken", null, {
+    //   expires: new Date(Date.now()),
+    //   httpOnly: true,
+    // });
     res.send({
       message: "loggedOut",
     });
