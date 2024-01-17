@@ -47,7 +47,7 @@ router.post("/user/login", async (req, res) => {
       const isMatch = await bcrypt.compare(password, userLogin.password);
       const token = await userLogin.generateAuthToken();
       res.cookie("jwtToken", token, {
-        // expires: new Date(Date.now() + 2592000000),
+        expires: new Date(Date.now() + 2592000000),
         httpOnly: false,
         // secure: true,
         sameSite: "None",
@@ -93,8 +93,8 @@ router.get("/user/logout", auth, async (req, res) => {
     console.log("logout");
     res.clearCookie("jwtToken");
     console.log("finish logout");
-    // const user= await req.user.save();
-    // console.log(user);
+    const user= await req.user.save();
+    console.log(user);
     // res.cookie("jwtToken", null, {
     //   expires: new Date(Date.now()),
     //   httpOnly: true,
