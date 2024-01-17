@@ -90,9 +90,11 @@ router.get("/user/check", auth, async (req, res) => {
 router.get("/user/logout", auth, async (req, res) => {
   try {
     // res.clearCookie("jwtToken");
+    console.log("logout");
     res.clearCookie("jwtToken", { domain: "http://localhost:3000", path: "/", secure: true, httpOnly: false });
-    await req.user.save();
-
+    console.log("finish logout");
+    const user= await req.user.save();
+    console.log(user);
     // res.cookie("jwtToken", null, {
     //   expires: new Date(Date.now()),
     //   httpOnly: true,
